@@ -9,16 +9,13 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/abc" />
             <option value="$PROJECT_DIR$/common" />
             <option value="$PROJECT_DIR$/common/domain" />
             <option value="$PROJECT_DIR$/order-service" />
-            <option value="$PROJECT_DIR$/order-service/order-app" />
-            <option value="$PROJECT_DIR$/order-service/order-container" />
-            <option value="$PROJECT_DIR$/order-service/order-data-access" />
-            <option value="$PROJECT_DIR$/order-service/order-domain" />
-            <option value="$PROJECT_DIR$/order-service/order-domain/order-app-service" />
-            <option value="$PROJECT_DIR$/order-service/order-domain/order-domain-core" />
-            <option value="$PROJECT_DIR$/order-service/order-messaging" />
+            <option value="$PROJECT_DIR$/order-service/domain" />
+            <option value="$PROJECT_DIR$/order-service/domain/core" />
+            <option value="$PROJECT_DIR$/test" />
           </set>
         </option>
       </GradleProjectSettings>
