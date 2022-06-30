@@ -1,6 +1,6 @@
 plugins {
     id 'java'
-}
+   }
 
 group 'com.food.ordering.app'
 version '1.0-SNAPSHOT'
