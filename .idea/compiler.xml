@@ -9,6 +9,7 @@
         </processorPath>
         <module name="food-ordering-app.main" />
         <module name="food-ordering-app.test" />
+        <module name="food-ordering-app.order-service.domain.core.main" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="17" />

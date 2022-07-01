@@ -30,6 +30,21 @@ public class Order extends AggregateRoot<OrderId> {
         initializeOrderItems();
     }
 
+    public void validateOrder() {
+        validateInitialOrder();
+        validateTotalPrice();
+        validateItemsPrice();
+    }
+
+    private void validateItemsPrice() {
+    }
+
+    private void validateTotalPrice() {
+    }
+
+    private void validateInitialOrder() {
+    }
+
     private void initializeOrderItems() {
         AtomicLong itemId = new AtomicLong(1);
         items.forEach(orderItem -> orderItem.initialize(super.getId(), new OrderItemId(itemId.getAndIncrement())));
