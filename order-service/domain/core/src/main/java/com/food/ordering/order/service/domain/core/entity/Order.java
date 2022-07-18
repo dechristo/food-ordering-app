@@ -2,6 +2,7 @@ package com.food.ordering.order.service.domain.core.entity;
 
 import com.food.ordering.app.common.domain.entity.AggregateRoot;
 import com.food.ordering.app.common.domain.valueobject.*;
+import com.food.ordering.order.service.domain.core.exception.OrderDomainException;
 import com.food.ordering.order.service.domain.core.valueobject.OrderItemId;
 import com.food.ordering.order.service.domain.core.valueobject.TrackingId;
 import lombok.Builder;
@@ -36,13 +37,38 @@ public class Order extends AggregateRoot<OrderId> {
         validateItemsPrice();
     }
 
-    private void validateItemsPrice() {
+
+    private void validateInitialOrder() {
+        if (orderStatus != null || getId() != null) {
+            throw new OrderDomainException("Order is not in the correct state for initialization.");
+        }
     }
 
     private void validateTotalPrice() {
+        if (price == null || !price.isGreaterThanZero()) {
+            throw new OrderDomainException(" Total price must be greater than zero.");
+        }
     }
 
-    private void validateInitialOrder() {
+    private void validateItemsPrice() {
+        Money orderItemsTotal = items.stream()
+            .map( orderItem -> {
+                validateItemPrice(orderItem);
+                return orderItem.getSubTotal();
+            })
+            .reduce(Money.ZERO, Money::add);
+
+        if (!price.equals(orderItemsTotal)) {
+            throw new OrderDomainException("Total price: [" + price.getAmount() + "]" +
+                "is not equal to order items total: [" + orderItemsTotal.getAmount() + "]");
+        }
+    }
+
+    private void validateItemPrice(OrderItem orderItem) {
+        if (!orderItem.isPriceValid()) {
+            throw new OrderDomainException("Order item price: " + orderItem.getPrice().getAmount() +
+                " is not valid for product " + orderItem.getProduct().getName());
+        }
     }
 
     private void initializeOrderItems() {
