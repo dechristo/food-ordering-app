@@ -1,0 +1,23 @@
+plugins {
+    id 'java'
+}
+
+group 'com.food.ordering.app'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation project(":order-service:domain:core")
+    implementation project(":common:domain")
+    implementation 'org.springframework.boot:spring-boot-starter-validation:2.7.2'
+    implementation 'org.springframework:spring-tx:5.3.22'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.0'
+}
+
+test {
+    useJUnitPlatform()
+}

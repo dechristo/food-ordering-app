@@ -20,7 +20,7 @@ public class OrderDomainActionsService implements OrderDomainService {
     private static String UTC = "UTC";
 
     @Override
-    public OrderCreatedEvent initialiazeOrder(Order order, Restaurant restaurant) {
+    public OrderCreatedEvent initializeOrder(Order order, Restaurant restaurant) {
         validateRestaurant(restaurant);
         setOrderProductInformation(order, restaurant);
         order.validateOrder();
